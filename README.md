@@ -1,4 +1,5 @@
 # North_west_corner
+
 Python code for North West Corner rule
 
 def north_west_corner (supply, demand):
@@ -45,3 +46,22 @@ bfs = north_west_corner (supply, demand)
 
 print("The output is:- \n", bfs)
 
+
+# Total Transportation Cost
+
+grid = [[3, 1, 7, 4], [2, 6, 5, 9], [8, 3, 3, 2]]
+supply = [300, 400, 500]
+demand = [250, 350, 400, 200]
+startR = 0
+startC = 0
+ans = 0
+while(startR != len(grid) and startC != len(grid[0])):
+	if(supply[startR] <= demand[startC]):
+		ans += supply[startR] * grid[startR][startC]
+		demand[startC] -= supply[startR]
+		startR += 1
+	else:
+		ans += demand[startC] * grid[startR][startC]
+		supply[startR] -= demand[startC]
+		startC += 1
+print("The initial feasible basic solution is ", ans)
